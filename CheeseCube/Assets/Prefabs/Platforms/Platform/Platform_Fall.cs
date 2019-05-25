@@ -28,7 +28,7 @@ public class Platform_Fall : MonoBehaviour
             box.enabled = false;
         }
 
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(3);
 
         Destroy(gameObject);
 
