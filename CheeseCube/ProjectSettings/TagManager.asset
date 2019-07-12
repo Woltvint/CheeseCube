@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Lever
   - Fade
+  - Platform
   layers:
   - Default
   - TransparentFX

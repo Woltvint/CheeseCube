@@ -12,7 +12,7 @@ public class Player_Control : MonoBehaviour
     public float maxFallSpeed;
 
     public float T = 0;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
 
     void Start()
@@ -22,6 +22,17 @@ public class Player_Control : MonoBehaviour
 
     void FixedUpdate()
     {
+        RaycastHit2D rayLeft = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.5f, 0), new Vector2(0, -1), jumpDist);
+        RaycastHit2D rayMid = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -1), jumpDist);
+        RaycastHit2D rayRight = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.5f, 0), new Vector2(0, -1), jumpDist);
+
+        RaycastHit2D hit = rayMid;
+
+        bool can = false;
+
+        if (rayLeft && rayLeft.distance < jumpDist && rayLeft.collider.tag == "Ground") { can = true; hit = rayLeft; }
+        if (rayMid && rayMid.distance < jumpDist && rayMid.collider.tag == "Ground") { can = true; hit = rayMid; }
+        if (rayRight && rayRight.distance < jumpDist && rayRight.collider.tag == "Ground") { can = true; hit = rayRight; }
 
         //moving
 
@@ -32,6 +43,10 @@ public class Player_Control : MonoBehaviour
         else if (Input.GetButton("Right"))
         {
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        }
+        else if (can && hit.transform.gameObject.GetComponent<Rigidbody2D>())
+        {
+            rb.velocity = new Vector2(hit.transform.gameObject.GetComponent<Rigidbody2D>().velocity.x, rb.velocity.y);
         }
         else if (!friction)
         {
@@ -47,16 +62,6 @@ public class Player_Control : MonoBehaviour
 
 
         //jumping
-
-        RaycastHit2D rayLeft = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.5f, 0), new Vector2(0, -1), jumpDist);
-        RaycastHit2D rayMid = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -1), jumpDist);
-        RaycastHit2D rayRight = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.5f, 0), new Vector2(0, -1), jumpDist);
-
-        bool can = false;
-
-        if (rayLeft && rayLeft.distance < jumpDist && rayLeft.collider.tag == "Ground") { can = true; }
-        if (rayMid && rayMid.distance < jumpDist && rayMid.collider.tag == "Ground") { can = true; }
-        if (rayRight && rayRight.distance < jumpDist && rayRight.collider.tag == "Ground") { can = true; }
 
         if (can)
         {
