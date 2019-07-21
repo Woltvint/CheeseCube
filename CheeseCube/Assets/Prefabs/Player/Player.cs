@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Death")
         {
             GameObject go = Instantiate(DeathParticles, transform.position, transform.rotation, transform.parent);
+            go.GetComponent<Rigidbody2D>().velocity = rb.velocity;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponentInParent<Game_Manager>().StartCoroutine(gameObject.GetComponentInParent<Game_Manager>().ResetLevel());
             Destroy(gameObject);
         }
