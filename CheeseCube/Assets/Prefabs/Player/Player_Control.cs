@@ -34,6 +34,12 @@ public class Player_Control : MonoBehaviour
         if (rayMid && rayMid.distance < jumpDist && rayMid.collider.tag == "Ground") { can = true; hit = rayMid; }
         if (rayRight && rayRight.distance < jumpDist && rayRight.collider.tag == "Ground") { can = true; hit = rayRight; }
 
+        if (!friction)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+
+
         //moving
 
         if (Input.GetButton("Left"))
@@ -46,12 +52,9 @@ public class Player_Control : MonoBehaviour
         }
         else if (can && hit.transform.gameObject.GetComponent<Rigidbody2D>())
         {
-            rb.velocity = new Vector2(hit.transform.gameObject.GetComponent<Rigidbody2D>().velocity.x, rb.velocity.y);
+            rb.velocity += new Vector2(hit.transform.gameObject.GetComponent<Rigidbody2D>().velocity.x, rb.velocity.y);
         }
-        else if (!friction)
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-        }
+        
 
         //speedcheck
 

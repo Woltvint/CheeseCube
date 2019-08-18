@@ -150,6 +150,7 @@ MonoBehaviour:
   maxFallSpeedCheck: 0
   maxFallSpeed: 0
   T: 0
+  rb: {fileID: 0}
 --- !u!114 &973338801263618248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +177,7 @@ GameObject:
   - component: {fileID: 1607246695}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

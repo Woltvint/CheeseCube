@@ -9,6 +9,9 @@ TagManager:
   - Lever
   - Fade
   - Platform
+  - Manager
+  - PauseMenu
+  - DeathCounter
   layers:
   - Default
   - TransparentFX

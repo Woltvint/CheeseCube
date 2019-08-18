@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
             GameObject go = Instantiate(DeathParticles, transform.position, transform.rotation, transform.parent);
             go.GetComponent<Rigidbody2D>().velocity = rb.velocity;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            gameObject.GetComponentInParent<Game_Manager>().StartCoroutine(gameObject.GetComponentInParent<Game_Manager>().ResetLevel());
+            gameObject.GetComponentInParent<Game_Manager>().StartCoroutine(gameObject.GetComponentInParent<Game_Manager>().ResetLevel(true));
             Destroy(gameObject);
         }
     }
