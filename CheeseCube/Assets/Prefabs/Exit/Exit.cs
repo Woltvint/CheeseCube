@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Exit : MonoBehaviour
 {
     public float chargeTime;
+    public GameObject teleportEffect;
     public string levelName;
 
     private bool isActivated = false;
@@ -29,12 +30,18 @@ public class Exit : MonoBehaviour
 
         if (isActivated)
         {
+            if (Input.GetButton("Submit"))
+            {
+                activeTime += chargeTime;
+            }
             activeTime += Time.deltaTime;
         }
     }
 
     public IEnumerator ChangeLevel()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player_Control>().hide();
+        Instantiate(teleportEffect,GameObject.FindGameObjectWithTag("Player").transform.position,Quaternion.identity);
         GameObject.FindGameObjectWithTag("Fade").GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(1);
         Destroy(GameObject.FindGameObjectWithTag("Fade").GetComponent<Animator>());

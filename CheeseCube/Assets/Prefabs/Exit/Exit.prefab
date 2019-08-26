@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeTime: 5
+  teleportEffect: {fileID: 8785428355796491146, guid: 28a0f0e393893164eb33d8e2568283ca,
+    type: 3}
   levelName: Level_02
 --- !u!198 &6614347522364411302
 ParticleSystem:

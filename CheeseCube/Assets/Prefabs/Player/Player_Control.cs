@@ -7,6 +7,7 @@ public class Player_Control : MonoBehaviour
     public float jumpDist, jumpSpeed, moveSpeed;
     public float timeToJump;
     public bool friction;
+    public bool controlable = true;
 
     public bool maxFallSpeedCheck;
     public float maxFallSpeed;
@@ -22,6 +23,12 @@ public class Player_Control : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!controlable)
+        {
+            return;
+        }
+
+
         RaycastHit2D rayLeft = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.5f, 0), new Vector2(0, -1), jumpDist);
         RaycastHit2D rayMid = Physics2D.Raycast(transform.position + new Vector3(0, -0.5f, 0), new Vector2(0, -1), jumpDist);
         RaycastHit2D rayRight = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.5f, 0), new Vector2(0, -1), jumpDist);
@@ -76,5 +83,11 @@ public class Player_Control : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             T = 0;
         }
+    }
+
+    public void hide()
+    {
+        controlable = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

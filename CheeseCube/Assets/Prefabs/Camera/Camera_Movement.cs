@@ -41,7 +41,8 @@ public class Camera_Movement : MonoBehaviour
 
         if (move_xy)
         {
-            destpos = player.position + new Vector3(0, 0, origin[2]);
+            destpos = player.position;
+            destpos.z = origin[2];
             cam.position = Vector3.Lerp(cam.position, destpos, speed);
         }
     }

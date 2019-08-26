@@ -46,6 +46,7 @@ public class PauseMenu : MonoBehaviour
 
     public void goToMenu()
     {
+        GameObject.FindGameObjectWithTag("DeathCounter").GetComponent<DeathCounter>().reset();
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1;
     }

@@ -32,4 +32,9 @@ public class DeathCounter : MonoBehaviour
         deaths++;
     }
 
+    public void reset()
+    {
+        deaths = 0;
+    }
+
 }
